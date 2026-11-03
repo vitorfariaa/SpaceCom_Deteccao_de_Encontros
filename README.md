@@ -107,9 +107,5 @@ npm run benchmark -- --input inputs/dataset7.txt --algorithm grid --runs 3 --out
 - `src/`: leitura, validação, detecção, cálculo de distância e CLI.
 - `test/`: testes com `node:test`.
 - `scripts/`: verificação dos resultados e benchmark.
-- `outputs/`: no ZIP, apenas os sete JSONs gerados pelo algoritmo.
+- `outputs/`: sete JSONs gerados pelo algoritmo.
 - `requirements.txt`: enunciado original.
-
-O ZIP de entrega inclui essas pastas, este README, `package.json` e `package-lock.json`. Os datasets de entrada ficam de fora por causa do tamanho; o avaliador pode colocar os arquivos fornecidos na pasta `inputs/` para repetir a execução. `npm test` e `npm run verify` funcionam sem os datasets de entrada. Gabaritos e relatórios ficam fora do pacote; a comparação com os gabaritos é opcional.
-
-O projeto foi feito com apoio de IA na implementação e revisão. As escolhas do algoritmo e suas limitações estão descritas acima para facilitar a discussão da solução.
