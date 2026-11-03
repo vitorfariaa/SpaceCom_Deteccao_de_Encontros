@@ -16,16 +16,39 @@ function unquote(value) {
 }
 
 function parseId(text, field) {
-  if (!INTEGER.test(text) || !Number.isSafeInteger(Number(text))) {
+  const id = Number(text);
+  if (!INTEGER.test(text) || !Number.isSafeInteger(id)) {
     throw new Error(`${field} deve ser um inteiro não negativo seguro`);
   }
-  return Number(text);
+  return id;
 }
 
 // reaproveita a validacao do timestamp anterior
 export function createParser() {
+  const common = /^(\d+);(\d*);"([^"]{19})";(-?\d+\.\d{5});(-?\d+\.\d{5});false;$/;
+  const noRestrictions = Object.freeze([]);
   let lastTimestamp;
   return function parseLine(line) {
+    // trata as linhas mais comuns com timestamp ja validado
+    const match = common.exec(line);
+    if (match && match[0].length === line.length && match[3] === lastTimestamp) {
+      const id = Number(match[1]);
+      const faction = match[2] === '' ? '' : Number(match[2]);
+      const lat = parseFloat(match[4]);
+      const lon = parseFloat(match[5]);
+      if (
+        Number.isSafeInteger(id) &&
+        (faction === '' || Number.isSafeInteger(faction)) &&
+        Math.abs(lat) <= 90 &&
+        Math.abs(lon) <= 180
+      ) {
+        return {
+          id, faction, timestamp: lastTimestamp, lat, lon,
+          protected: false, restrictions: noRestrictions,
+        };
+      }
+    }
+
     const fields = line.split(';');
     if (fields.length !== 7) throw new Error(`Esperados 7 campos, encontrados ${fields.length}`);
     const id = parseId(unquote(fields[0]), 'idMonitorado');

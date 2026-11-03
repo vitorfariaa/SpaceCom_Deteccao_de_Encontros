@@ -61,6 +61,8 @@ Interpretei “quaisquer dois monitorados” como todos os IDs da entrada, inclu
 
 O leitor aceita LF, CRLF, BOM UTF-8, campos entre aspas e a última linha sem quebra de linha. Valida o cabeçalho, os sete campos, IDs inteiros seguros, datas, booleanos e os limites das coordenadas. Linhas vazias são ignoradas. O limite de tamanho por linha é 1 MiB.
 
+Linhas sem medida protetiva e sem restrições, com timestamp já validado e coordenadas com cinco casas decimais, usam um atalho no parser. Nele, as coordenadas são convertidas com `parseFloat` depois de conferir o formato dos números. As outras linhas passam pelo parser completo, mantendo as validações e os formatos aceitos.
+
 Linhas repetidas para o mesmo ID e timestamp são descartadas quando os dados coincidem. Se as posições ou os metadados forem diferentes, o arquivo é rejeitado. A saída só substitui o arquivo anterior depois de terminar com sucesso.
 
 O modo padrão rejeita registros inválidos. Para aproveitar um arquivo com a última linha cortada, existe `--allow-truncated-tail`, também usado por `npm run generate`. Essa opção só ignora uma última linha sem newline e com menos de sete campos. Quando isso acontece, o relatório marca o resultado como parcial. Os sete arquivos atuais foram processados em modo estrito, sem descartar linhas incompletas.
@@ -92,7 +94,7 @@ npm run benchmark
 
 São três execuções por arquivo, cada uma em um processo novo. O tempo inclui leitura, validação, detecção e escrita, mas não o início do processo Node. O cache do sistema operacional não é limpo. O comando gera `outputs/benchmark.json` com o ambiente, as amostras, a média, a mediana e o pico de memória RSS.
 
-Na última medição, com os sete arquivos atuais, a soma dos tempos médios foi de **47,935 segundos**, em Node.js 18.20.6 no Ubuntu/WSL2 (Intel Core i7-1360P). Os resultados foram iguais nas três execuções de cada arquivo.
+Na última medição, com os sete arquivos atuais, a soma dos tempos médios foi de **29,979 segundos**, em Node.js 18.20.6 no Ubuntu/WSL2 (Intel Core i7-1360P). Os resultados foram iguais nas três execuções de cada arquivo.
 
 O benchmark rejeita entradas inválidas e compara os resultados das repetições com os JSONs já gerados. Para medir outro algoritmo ou um arquivo específico:
 
