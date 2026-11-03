@@ -1,0 +1,15 @@
+{
+  "name": "spacecom-encontros",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Detecção de encontros por timestamp e distância de Haversine, com processamento em fluxo.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node src/cli.js",
+    "generate": "node src/cli.js --allow-truncated-tail",
+    "test": "node --test",
+    "verify": "node scripts/verify.js",
+    "benchmark": "node scripts/benchmark.js"
+  }
+}
