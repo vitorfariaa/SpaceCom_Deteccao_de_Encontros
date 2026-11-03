@@ -78,7 +78,7 @@ O modo padrão rejeita registros inválidos. Para aproveitar um arquivo com a ú
 | 7 | 12.000.000 | 35 |
 | Total | 21.530.020 | 118 |
 
-Todos os arquivos foram processados sem erros. Os resultados estão em `outputs/dataset1.json` até `outputs/dataset7.json`. Ao executar o programa, também é gerado `outputs/report.json`, com as contagens, os tempos e o status de cada execução. Esse relatório não acompanha o ZIP de entrega.
+Todos os arquivos foram processados sem erros. Os resultados estão em `outputs/dataset1.json` até `outputs/dataset7.json`. Ao executar o programa, também é gerado `outputs/report.json`, com as contagens, os tempos e o status de cada execução.
 
 ## Testes e desempenho
 
@@ -90,7 +90,7 @@ Para medir o desempenho:
 npm run benchmark
 ```
 
-São três execuções por arquivo, cada uma em um processo novo. O tempo inclui leitura, validação, detecção e escrita, mas não o início do processo Node. O cache do sistema operacional não é limpo. O comando gera `outputs/benchmark.json` com o ambiente, as amostras, a média, a mediana e o pico de memória RSS. Os relatórios de benchmark não acompanham o ZIP.
+São três execuções por arquivo, cada uma em um processo novo. O tempo inclui leitura, validação, detecção e escrita, mas não o início do processo Node. O cache do sistema operacional não é limpo. O comando gera `outputs/benchmark.json` com o ambiente, as amostras, a média, a mediana e o pico de memória RSS.
 
 Na última medição, com os sete arquivos atuais, a soma dos tempos médios foi de **47,935 segundos**, em Node.js 18.20.6 no Ubuntu/WSL2 (Intel Core i7-1360P). Os resultados foram iguais nas três execuções de cada arquivo.
 
@@ -106,4 +106,3 @@ npm run benchmark -- --input inputs/dataset7.txt --algorithm grid --runs 3 --out
 - `test/`: testes com `node:test`.
 - `scripts/`: verificação dos resultados e benchmark.
 - `outputs/`: sete JSONs gerados pelo algoritmo.
-- `requirements.txt`: enunciado original.
