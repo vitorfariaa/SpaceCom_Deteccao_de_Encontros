@@ -14,7 +14,7 @@ npm start
 npm run verify
 ```
 
-`npm test` roda os testes automatizados. `npm start` processa os arquivos de `inputs/` e salva os resultados em `outputs/`. `npm run verify` confere o formato, as distâncias e a unicidade dos JSONs. Se os gabaritos `respostas1.json` e `respostas2.json` estiverem em `outputs/`, também compara os dois primeiros resultados com eles; caso contrário, avisa que essa comparação não foi feita.
+`npm test` roda os testes automatizados. `npm start` processa os arquivos de `inputs/` e salva os resultados em `outputs/`. `npm run verify` confere o formato, as distâncias e a unicidade dos JSONs.
 
 Também dá para processar só um arquivo ou escolher outro diretório:
 
@@ -79,8 +79,6 @@ O modo padrão rejeita registros inválidos. Para aproveitar um arquivo com a ú
 | Total | 21.530.020 | 118 |
 
 Todos os arquivos foram processados sem erros. Os resultados estão em `outputs/dataset1.json` até `outputs/dataset7.json`. Ao executar o programa, também é gerado `outputs/report.json`, com as contagens, os tempos e o status de cada execução. Esse relatório não acompanha o ZIP de entrega.
-
-Os datasets 1 e 2 coincidem com os gabaritos: 10 encontros corretos, sem registros extras. Para os outros cinco, não há gabarito fornecido; os testes e a verificação dos JSONs não substituem essa comparação externa.
 
 ## Testes e desempenho
 
